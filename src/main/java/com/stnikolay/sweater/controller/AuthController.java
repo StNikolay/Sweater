@@ -1,0 +1,40 @@
+package com.stnikolay.sweater.controller;
+
+import com.stnikolay.sweater.model.User;
+import com.stnikolay.sweater.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class AuthController {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/user_list")
+    public String userList(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "/user_list";
+    }
+
+    @GetMapping("/sign_up")
+    public String setSignUp(Model model) {
+        model.addAttribute("user", new User());
+        return "/sign_up";
+    }
+
+    @PostMapping("/sign_up")
+    public String signUp(@ModelAttribute User user,
+                        BindingResult result) {
+        if (result.hasErrors()){
+            return "/sign_up";
+        }
+        userRepository.save(user);
+        return "redirect:/user_list";
+    }
+}
