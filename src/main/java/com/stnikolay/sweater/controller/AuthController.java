@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AuthController {
@@ -16,25 +17,31 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/user_list")
+    @GetMapping("/users")
     public String userList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "/user_list";
     }
 
-    @GetMapping("/sign_up")
+    @GetMapping("/join")
     public String setSignUp(Model model) {
         model.addAttribute("user", new User());
         return "/sign_up";
     }
 
-    @PostMapping("/sign_up")
+    @PostMapping("/join")
     public String signUp(@ModelAttribute User user,
                         BindingResult result) {
         if (result.hasErrors()){
             return "/sign_up";
         }
         userRepository.save(user);
-        return "redirect:/user_list";
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/login")
+    public String login(/*@RequestParam(required = false) Boolean error,
+                        Model model*/) {
+        return "sign_in";
     }
 }
