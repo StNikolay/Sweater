@@ -7,7 +7,7 @@
     </head>
     <body>
     <@spring.bind "user"/>
-        <form action="/sign_up" method="post">
+        <form action="/join" method="post">
             <div>
                 Username: <@spring.formInput "user.username"/>
                 <@spring.showErrors "<br>"/>
