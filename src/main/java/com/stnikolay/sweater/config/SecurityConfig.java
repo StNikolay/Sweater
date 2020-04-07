@@ -16,15 +16,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/sign_up", "/login").anonymous()
-                .antMatchers("/users").authenticated()
-                .and().csrf().disable()
+        http
+                .authorizeRequests()
+                    .antMatchers("/join", "/login").anonymous()
+                    .antMatchers("/users").authenticated()
+                    .anyRequest().permitAll()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login/process")
-                .usernameParameter("username")
-                .and().logout();
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login/process")
+                    .and()
+                .logout();
     }
 
     @Override

@@ -5,7 +5,7 @@
         <title>Sweater</title>
     </head>
     <body>
-        <h3>There will be start page for authority users</h3>
+        <h3>There will be start page</h3>
         <a href="/users">User list</a>
     </body>
 </html>

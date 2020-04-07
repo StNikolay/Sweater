@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @Controller
 public class AuthController {
 
@@ -30,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/join")
-    public String signUp(@ModelAttribute User user,
+    public String signUp(@ModelAttribute @Valid User user,
                         BindingResult result) {
         if (result.hasErrors()){
             return "/sign_up";

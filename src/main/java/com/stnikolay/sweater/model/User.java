@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 5, max = 20, message = "Username should be form 5 to 20")
+    @Size(min = 5, max = 20)
     private String username;
 
     @NotBlank
