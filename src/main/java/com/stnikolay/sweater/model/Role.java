@@ -16,7 +16,7 @@ public class Role implements GrantedAuthority {
 
     @Transient
     @ManyToMany(mappedBy = "roles")
-    private Set<User> roles;
+    private Set<User> users;
 
     public Role() {
     }
@@ -47,11 +47,11 @@ public class Role implements GrantedAuthority {
     }
 
     public Set<User> getRoles() {
-        return roles;
+        return users;
     }
 
-    public void setRoles(Set<User> roles) {
-        this.roles = roles;
+    public void setRoles(Set<User> users) {
+        this.users = users;
     }
 
     @Override
