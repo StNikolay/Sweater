@@ -5,7 +5,6 @@
         <title>User List</title>
     </head>
     <body>
-        <a href="/sign_up">Add user</a>
         <#if users?has_content>
             <#list users as user>
                 <div>
@@ -19,5 +18,11 @@
         <#else>
             <p>No users yet</p>
         </#if>
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout"/>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </form>
     </body>
 </html>
