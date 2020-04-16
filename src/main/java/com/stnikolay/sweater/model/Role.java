@@ -46,11 +46,11 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getRoles() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setRoles(Set<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 

@@ -4,7 +4,7 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="/login/process" method="post">
+        <form action="/login" method="post">
             <div>
                 Username: <input name="username" type="text">
             </div>

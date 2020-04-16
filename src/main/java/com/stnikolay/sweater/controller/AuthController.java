@@ -39,7 +39,7 @@ public class AuthController {
             return "/sign_up";
         }
         userService.saveUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @RequestMapping("/login")
