@@ -5,6 +5,7 @@
         <title>User List</title>
     </head>
     <body>
+        <h1>List of users:</h1>
         <#if users?has_content>
             <#list users as user>
                 <div>
