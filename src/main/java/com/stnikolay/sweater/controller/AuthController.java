@@ -34,11 +34,18 @@ public class AuthController {
 
     @PostMapping("/join")
     public String signUp(@ModelAttribute @Valid User user,
+                        Model model,
                         BindingResult result) {
+
         if (result.hasErrors()){
             return "/sign_up";
         }
-        userService.saveUser(user);
+
+        if (!userService.saveUser(user)){
+            model.addAttribute("message", "User is already exist");
+            return "/sign_up";
+        }
+
         return "redirect:/";
     }
 
