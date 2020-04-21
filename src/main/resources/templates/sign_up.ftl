@@ -6,7 +6,10 @@
         <title>Sign up</title>
     </head>
     <body>
-    <@spring.bind "user"/>
+        <#if message??>
+            ${message}
+        </#if>
+        <@spring.bind "user"/>
         <form action="/join" method="post">
             <div>
                 Username: <@spring.formInput "user.username"/>
