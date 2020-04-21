@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
@@ -14,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestPropertySource(value = "/test-application.properties")
 class LoginTests {
 
     @Autowired
@@ -29,7 +31,7 @@ class LoginTests {
 
     @Test
     public void shouldLogin() throws Exception {
-        this.mockMvc.perform(formLogin().user("testUser").password("test"))
+        this.mockMvc.perform(formLogin().user("ExistUser").password("password"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
@@ -38,7 +40,7 @@ class LoginTests {
 
     @Test
     public void badCredentials() throws Exception {
-        this.mockMvc.perform(formLogin().user("testUser").password("1"))
+        this.mockMvc.perform(formLogin().user("ExistUser").password("wrong"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login?error"));
