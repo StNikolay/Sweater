@@ -1,5 +1,6 @@
 package com.stnikolay.sweater.model;
 
+import javafx.geometry.Pos;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +31,9 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @OneToMany(mappedBy="author", fetch = FetchType.EAGER)
+    private Set<Post> posts;
 
     public User() {
     }
@@ -105,11 +109,19 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Users[id=%d, username='%s', email='%s']",
-                id, username, email);
+    public void addPost(Post post) {
+        posts.add(post);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                ", posts=" + posts +
+                '}';
+    }
 }
