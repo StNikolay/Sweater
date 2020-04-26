@@ -20,12 +20,6 @@ public class AuthController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/users")
-    public String userList(Model model) {
-        model.addAttribute("users", userService.allUsers());
-        return "/user_list";
-    }
-
     @GetMapping("/join")
     public String setSignUp(Model model) {
         model.addAttribute("user", new User());
