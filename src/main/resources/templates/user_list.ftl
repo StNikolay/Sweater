@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>User List</title>
-    </head>
-    <body>
+<#import "common.ftl" as common>
+<@common.page title="Sweater">
+    <div>
         <h1>List of users:</h1>
         <#if users?has_content>
             <#list users as user>
@@ -25,5 +21,5 @@
                    name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
-    </body>
-</html>
+    </div>
+</@common.page>

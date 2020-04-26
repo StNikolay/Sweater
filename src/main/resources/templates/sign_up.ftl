@@ -1,11 +1,7 @@
 <#import "/spring.ftl" as spring />
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sign up</title>
-    </head>
-    <body>
+<#import "common.ftl" as common>
+<@common.page title="Registration">
+    <div>
         <#if message??>
             ${message}
         </#if>
@@ -28,5 +24,5 @@
                    name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
-    </body>
-</html>
+    </div>
+</@common.page>

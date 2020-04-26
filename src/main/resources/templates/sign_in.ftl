@@ -1,9 +1,6 @@
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
-    </head>
-    <body>
+<#import "common.ftl" as common>
+<@common.page title="Login">
+    <div>
         <form action="/login" method="post">
             <div>
                 Username: <input name="username" type="text">
@@ -16,5 +13,5 @@
                    name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
-    </body>
-</html>
+    </div>
+</@common.page>

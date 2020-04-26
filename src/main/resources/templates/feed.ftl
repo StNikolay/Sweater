@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sweater</title>
-    </head>
-    <body>
+<#import "common.ftl" as common>
+<@common.page title="Sweater">
+    <div>
         <form action="/feed" method="post">
             <div>
                 <input name="title" type="text" placeholder="Title" />
@@ -31,5 +27,5 @@
                 </div>
             </div>
         </#list>
-    </body>
-</html>
+    </div>
+</@common.page>
