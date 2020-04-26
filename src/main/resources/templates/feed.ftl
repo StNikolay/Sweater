@@ -21,6 +21,9 @@
         <#list userPosts as post>
             <div>
                 <div>
+                    @${post.author.username}
+                </div>
+                <div>
                     ${post.title}
                 </div>
                 <div>

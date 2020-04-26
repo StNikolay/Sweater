@@ -15,7 +15,7 @@ public class PostService {
     PostRepository postRepository;
 
     public List<Post> userPosts(User user) {
-        return postRepository.findAllByUser(user);
+        return postRepository.findAllByAuthor(user);
     }
 
     public void addPost(Post post) {
