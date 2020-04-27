@@ -109,6 +109,14 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public boolean isAdmin() {
+        for (Role role : roles) {
+            if (role.getName().contains("ROLE_ADMIN"))
+                return true;
+        }
+        return false;
+    }
+
     public void addPost(Post post) {
         posts.add(post);
     }
