@@ -22,10 +22,10 @@
                     </ul>
                     <#if name??>
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${name}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Setting</a>
                                 <div class="dropdown-divider"></div>
