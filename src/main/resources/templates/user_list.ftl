@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>User List</title>
-    </head>
-    <body>
+<#import "common.ftl" as common>
+<@common.page title="Sweater">
+    <div>
         <h1>List of users:</h1>
         <#if users?has_content>
             <#list users as user>
-                <div>
-                    Username: ${user.username}
-                </div>
-                <div>
-                    Email: ${user.email}
-                </div>
                 <br>
+                <div class="card w-75">
+                    <div class="card-header">
+                        Username: @${user.username}
+                    </div>
+                    <div class="card-body">
+                        Email: ${user.email}
+                    </div>
+                </div>
             </#list>
         <#else>
             <p>No users yet</p>
         </#if>
-        <form action="/logout" method="post">
-            <input type="submit" value="Logout"/>
-            <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}"/>
-        </form>
-    </body>
-</html>
+    </div>
+</@common.page>

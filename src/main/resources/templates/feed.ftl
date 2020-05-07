@@ -1,35 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sweater</title>
-    </head>
-    <body>
-        <form action="/feed" method="post">
-            <div>
-                <input name="title" type="text" placeholder="Title" />
-                <input type="submit" value="Post">
+<#import "common.ftl" as common>
+<@common.page title="Sweater">
+    <form action="/feed" method="post">
+        <div class="input-group">
+            <input class="input-group-text" name="title" type="text" placeholder="Title">
+            <div class="input-group-append">
+                <input class="btn btn-outline-primary btn-lg" type="submit" value="Post">
                 <input type="hidden"
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
             </div>
-            <div>
-                <input name="text" type="text" placeholder="Text" />
-            </div>
-        </form>
+        </div>
+        <div class="form-group w-75">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text" placeholder="Text"></textarea>
+        </div>
+    </form>
 
-        <#list userPosts as post>
-            <div>
-                <div>
-                    @${post.author.username}
-                </div>
-                <div>
-                    ${post.title}
-                </div>
-                <div>
-                    ${post.text}
-                </div>
+
+    <#list userPosts as post>
+        <br>
+        <div class="card w-75">
+            <div class="card-header">
+                @${post.author.username}
             </div>
-        </#list>
-    </body>
-</html>
+            <div class="card-body">
+                <h5 class="card-title">
+                    ${post.title}
+                </h5>
+                <p class="card-text">
+                    ${post.text}
+                </p>
+            </div>
+        </div>
+    </#list>
+</@common.page>
