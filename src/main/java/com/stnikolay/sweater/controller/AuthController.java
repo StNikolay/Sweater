@@ -28,8 +28,8 @@ public class AuthController {
 
     @PostMapping("/join")
     public String signUp(@ModelAttribute @Valid User user,
-                        Model model,
-                        BindingResult result) {
+                        BindingResult result,
+                         Model model) {
 
         if (result.hasErrors()){
             return "/sign_up";
