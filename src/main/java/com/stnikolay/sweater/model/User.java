@@ -1,6 +1,5 @@
 package com.stnikolay.sweater.model;
 
-import javafx.geometry.Pos;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -119,6 +118,10 @@ public class User implements UserDetails {
 
     public void addPost(Post post) {
         posts.add(post);
+    }
+
+    public void removePost(Post post) {
+        posts.remove(post);
     }
 
     @Override

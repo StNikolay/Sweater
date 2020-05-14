@@ -30,6 +30,14 @@
                     ${post.text}
                 </p>
             </div>
+            <div class="card-footer text-muted">
+                <form action="/feed/${post.getId()}" method="post">
+                    <input type="submit" value="delete" class="btn btn-danger">
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}">
+                </form>
+            </div>
         </div>
     </#list>
 </@common.page>

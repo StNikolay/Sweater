@@ -12,6 +12,14 @@
                     <div class="card-body">
                         Email: ${user.email}
                     </div>
+                    <div class="card-footer text-muted">
+                        <form action="/users/${user.getId()}" method="post">
+                            <input type="submit" value="delete" class="btn btn-danger">
+                            <input type="hidden"
+                                   name="${_csrf.parameterName}"
+                                   value="${_csrf.token}">
+                        </form>
+                    </div>
                 </div>
             </#list>
         <#else>
