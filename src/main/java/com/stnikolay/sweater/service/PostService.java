@@ -5,6 +5,7 @@ import com.stnikolay.sweater.model.User;
 import com.stnikolay.sweater.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,4 +26,10 @@ public class PostService {
     public void removePostById(Long id) {
         postRepository.deleteById(id);
     }
+
+    @Transactional
+    public void removePostsByAuthor(User user) {
+        postRepository.deleteAllByAuthor(user);
+    }
+
 }

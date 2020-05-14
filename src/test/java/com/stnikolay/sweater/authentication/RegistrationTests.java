@@ -42,7 +42,7 @@ public class RegistrationTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
         User user = (User) userService.loadUserByUsername("NewUser");
-        userService.deleteUser(user);
+        userService.removeUser(user);
     }
 
     @Test
