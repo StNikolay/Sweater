@@ -31,6 +31,13 @@ public class MainController {
         return "/user_list";
     }
 
+    @PostMapping("/users/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        postService.removePostsByAuthor(userService.getUserById(id));
+        userService.removeUserById(id);
+        return "redirect:/users";
+    }
+
     @PostMapping("/feed")
     public String newPost(@ModelAttribute Post post,
                           BindingResult result) {
