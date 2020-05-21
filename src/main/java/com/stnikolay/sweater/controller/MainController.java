@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 public class MainController {
 
@@ -39,7 +41,7 @@ public class MainController {
     }
 
     @PostMapping("/feed")
-    public String newPost(@ModelAttribute Post post,
+    public String newPost(@ModelAttribute @Valid Post post,
                           BindingResult result) {
 
         if (!result.hasErrors()){
