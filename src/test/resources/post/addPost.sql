@@ -1,0 +1,1 @@
+insert into public.t_post values (1, 'Title', 'Text', 1);

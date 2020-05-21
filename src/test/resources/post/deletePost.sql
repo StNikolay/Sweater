@@ -1,0 +1,1 @@
+delete from public.t_post where t_post.title = 'Title';
