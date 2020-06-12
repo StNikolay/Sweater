@@ -21,12 +21,12 @@ public class User implements UserDetails {
     @Size(min = 5, max = 20)
     private String username;
 
-    @NotBlank
-    private String password;
-
     @Email
     @NotBlank
     private String email;
+
+    @NotBlank
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;

@@ -26,7 +26,7 @@
                                 ${name}
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="/user/${user_id}">Profile</a>
                                 <a class="dropdown-item" href="#">Setting</a>
                                 <div class="dropdown-divider"></div>
                                 <form action="/logout" method="post">
