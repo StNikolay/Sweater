@@ -20,10 +20,10 @@ import javax.validation.Valid;
 public class MainController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    PostService postService;
+    private PostService postService;
 
     @GetMapping("/")
     public String home() {

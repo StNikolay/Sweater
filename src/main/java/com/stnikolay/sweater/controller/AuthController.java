@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("/join")
     public String setSignUp(Model model) {
