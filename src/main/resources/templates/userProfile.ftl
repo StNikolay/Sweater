@@ -1,7 +1,10 @@
 <#import "common.ftl" as common>
+<#include "security.ftl">
 <@common.page title="Sweater">
     <div class="row">
         <div class="col-8 order-first">
+
+            <#if user.getUsername()==name>
             <form action="/feed" method="post">
                 <div class="input-group">
                     <input class="input-group-text" name="title" type="text" placeholder="Title"/>
@@ -16,6 +19,7 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text" placeholder="Text"></textarea>
                 </div>
             </form>
+            </#if>
 
             <#list userPosts as post>
                 <br/>
