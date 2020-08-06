@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        user.setChatEnabled(false);
         userRepository.save(user);
         return true;
     }
