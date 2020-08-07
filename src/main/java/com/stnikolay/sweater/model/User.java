@@ -34,6 +34,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy="author", fetch = FetchType.EAGER)
     private Set<Post> posts;
 
+    private boolean chatEnabled;
+
     public User() {
     }
 
@@ -124,6 +126,14 @@ public class User implements UserDetails {
         posts.remove(post);
     }
 
+    public boolean isChatEnabled() {
+        return chatEnabled;
+    }
+
+    public void setChatEnabled(boolean chatEnabled) {
+        this.chatEnabled = chatEnabled;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -133,6 +143,7 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
                 ", posts=" + posts +
+                ", chatEnabled=" + chatEnabled +
                 '}';
     }
 }
