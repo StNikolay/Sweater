@@ -4,8 +4,8 @@ import com.stnikolay.sweater.model.Post;
 import com.stnikolay.sweater.model.User;
 import com.stnikolay.sweater.service.PostService;
 import com.stnikolay.sweater.service.UserService;
+import com.stnikolay.sweater.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,9 +48,7 @@ public class MainController {
                           BindingResult result) {
 
         if (!result.hasErrors()){
-            User user = (User) SecurityContextHolder.getContext()
-                    .getAuthentication().getPrincipal();
-            post.setAuthor(user);
+            post.setAuthor(UserUtil.getCurrentUser());
             postService.addPost(post);
         }
 
@@ -60,9 +58,7 @@ public class MainController {
     @GetMapping("/feed")
     public String feed(Model model) {
         model.addAttribute("post", new Post());
-        User user = (User) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-        model.addAttribute("userPosts", postService.userPosts(user));
+        model.addAttribute("userPosts", postService.userPosts(UserUtil.getCurrentUser()));
         return "feed";
     }
 
