@@ -52,6 +52,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).get();
     }
 
+    public void setChatEnabledForUser(String username) {
+        userRepository.setChatEnabled(username);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
