@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public List allUsers() {
+    public List<User> allUsers() {
         return userRepository.findAll();
     }
 
@@ -49,7 +49,11 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
+    }
+
+    public User getUserByUsername(String username) throws UsernameNotFoundException {
+        return (User) loadUserByUsername(username);
     }
 
     public void setChatEnabledForUser(String username) {
