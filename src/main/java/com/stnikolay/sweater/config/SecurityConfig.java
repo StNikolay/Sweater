@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/join", "/login").anonymous()
                     .antMatchers("/users").hasRole("ADMIN")
                     .antMatchers("/").hasRole("USER")
-                    .antMatchers("/feed", "/chat").authenticated()
+                    .antMatchers("/feed/**", "/chat/**", "/user/**").authenticated()
                     .anyRequest().permitAll()
                     .and()
                 .formLogin()
