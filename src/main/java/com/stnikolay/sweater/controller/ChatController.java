@@ -1,5 +1,6 @@
 package com.stnikolay.sweater.controller;
 
+import com.stnikolay.sweater.model.Message;
 import com.stnikolay.sweater.model.User;
 import com.stnikolay.sweater.service.ChatService;
 import com.stnikolay.sweater.service.UserService;
@@ -40,9 +41,25 @@ public class ChatController {
     }
 
     @GetMapping("/{username}")
-    public String chatWithUser(@PathVariable String username, Model model) {
+    public String chatWithUser(@PathVariable String username, Model model) throws NotFoundException {
+        if (!chatService.checkForExistence(username))
+            return "redirect:/chat";
         model.addAttribute("username", username);
         return "chat_page";
     }
 
+    @PostMapping("/{username}/send")
+    public RedirectView sendMessage(@PathVariable("username") String receiver,
+                                    @RequestParam String text) throws NotFoundException {
+
+        chatService.sendMessage(new Message(
+                UserUtil.getCurrentUser(),
+                userService.getUserByUsername(receiver),
+                text,
+                UserUtil.getTime(),
+                UserUtil.getDate()
+        ));
+
+        return new RedirectView("");
+    }
 }
