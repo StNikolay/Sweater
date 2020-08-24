@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
@@ -41,10 +43,20 @@ public class ChatController {
     }
 
     @GetMapping("/{username}")
-    public String chatWithUser(@PathVariable String username, Model model) throws NotFoundException {
-        if (!chatService.checkForExistence(username))
+    public String chatWithUser(@PathVariable("username") String interlocutor,
+                               Model model) throws NotFoundException {
+
+        if (!chatService.checkForExistence(interlocutor))
             return "redirect:/chat";
-        model.addAttribute("username", username);
+        model.addAttribute("username", interlocutor);
+
+        List<Message> dialogue = chatService.getDialogue(
+                UserUtil.getCurrentUser().getUsername(),
+                interlocutor,
+                UserUtil.getDate()
+        );
+        model.addAttribute("messages", dialogue);
+
         return "chat_page";
     }
 
