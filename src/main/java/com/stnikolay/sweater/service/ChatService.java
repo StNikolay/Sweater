@@ -1,5 +1,6 @@
 package com.stnikolay.sweater.service;
 
+import com.stnikolay.sweater.model.Dialogue;
 import com.stnikolay.sweater.model.Message;
 import com.stnikolay.sweater.model.User;
 import javassist.NotFoundException;
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class ChatService {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
     UserService userService;
@@ -69,5 +72,23 @@ public class ChatService {
         } catch (UsernameNotFoundException e) {
             return false;
         }
+    }
+
+    public List<Message> getDialogue(String user, String interlocutor, String date) throws NotFoundException {
+
+        ResponseEntity<Dialogue> response = restTemplate.exchange(
+                "http://localhost:8081/messages?user={user}&interlocutor={interlocutor}&date={date}",
+                HttpMethod.GET,
+                new HttpEntity<>(new HttpHeaders()),
+                Dialogue.class,
+                user,
+                interlocutor,
+                date
+        );
+
+        if (response.getStatusCode() == HttpStatus.OK)
+            return response.getBody().getMessages();
+        else
+            throw new NotFoundException("Request Failed with status code: " + response.getStatusCode());
     }
 }
