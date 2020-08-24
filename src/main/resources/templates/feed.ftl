@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="form-group w-75">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text" placeholder="Text"></textarea>
+            <textarea class="form-control" rows="3" name="text" placeholder="Text"></textarea>
         </div>
     </form>
 

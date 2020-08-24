@@ -39,7 +39,7 @@ public class UserController {
 
         model.addAttribute("user", user);
         model.addAttribute("userPosts", postService.userPosts(user));
-        return "/userProfile";
+        return "/user_profile";
     }
 
 }
